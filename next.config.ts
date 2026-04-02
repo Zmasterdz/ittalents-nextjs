@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* Vercel handles output mode automatically */
+  output: 'standalone',
   typescript: {
     ignoreBuildErrors: true,
   },
