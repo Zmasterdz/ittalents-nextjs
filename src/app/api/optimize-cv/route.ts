@@ -1,64 +1,34 @@
 import { NextRequest, NextResponse } from "next/server";
-import { readFileSync } from "fs";
-import { join } from "path";
-import ZAI from "z-ai-web-dev-sdk";
+import { SALARY_DATA, type SalaryEntry } from "@/lib/salary-data";
 
-// --- Salary Data ---
-interface SalaryEntry {
-  job: string;
-  min: number;
-  max: number;
-}
+// --- GLM API Config ---
+const GLM_API_URL = "https://open.bigmodel.cn/api/paas/v4/chat/completions";
 
-function loadSalaryData(): SalaryEntry[] {
-  try {
-    const raw = readFileSync(
-      join(process.cwd(), "data", "salaryData.json"),
-      "utf-8"
-    );
-    const parsed = JSON.parse(raw) as SalaryEntry[];
-    return parsed
-      .filter((e) => e.job && e.job !== "job")
-      .map((e) => ({
-        job: e.job,
-        min: typeof e.min === "string" ? parseFloat(e.min.replace(/\./g, "").replace(",", ".")) : Number(e.min) || 0,
-        max: typeof e.max === "string" ? parseFloat(e.max.replace(/\./g, "").replace(",", ".")) : Number(e.max) || 0,
-      }))
-      .filter((e) => e.min > 0 && e.max > 0);
-  } catch {
-    return [];
-  }
-}
-
+// --- Salary Matching ---
 function matchSalary(
   salaryData: SalaryEntry[],
   targetPosition: string
 ): SalaryEntry[] {
   if (!targetPosition || targetPosition === "Non spécifié") return [];
 
-  const target = targetPosition.toLowerCase().trim();
-  const normalized = target
+  const normalized = targetPosition
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase();
+    .toLowerCase()
+    .trim();
 
-  // Direct match scoring
   const scored = salaryData.map((entry) => {
     const entryNorm = entry.job
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
       .toLowerCase();
 
-    // Exact match
     if (entryNorm === normalized) return { entry, score: 100 };
-
-    // Contains match
     if (entryNorm.includes(normalized) || normalized.includes(entryNorm))
       return { entry, score: 85 };
 
-    // Keyword overlap scoring
-    const entryWords = new Set(entryNorm.split(/[\s\/\-_]+/));
-    const targetWords = new Set(normalized.split(/[\s\/\-_]+/));
+    const entryWords = new Set(entryNorm.split(/[\s\/\-_()]+/));
+    const targetWords = new Set(normalized.split(/[\s\/\-_()]+/));
     let overlap = 0;
     for (const w of targetWords) {
       if (entryWords.has(w)) overlap++;
@@ -83,9 +53,12 @@ function formatDZD(amount: number): string {
 function buildSalaryContext(salaryData: SalaryEntry[]): string {
   if (salaryData.length === 0) return "";
   const lines = salaryData.map(
-    (s) => `  - ${s.job} : ${formatDZD(s.min)} - ${formatDZD(s.max)} DZD/mois`
+    (s) =>
+      `  - ${s.job} : ${formatDZD(s.min)} - ${formatDZD(s.max)} DZD/mois`
   );
-  return `\n\nDONNÉES DE SALAIRE RÉELLES (source : ITTalentsdzpro, marché algérien) :\n${lines.join("\n")}\n\nIMPORTANT : Utilise ces données réelles pour donner une estimation salariale précise. Si le profil correspond à un de ces postes, donne la fourchette exacte.`;
+  return `\n\nDONNÉES DE SALAIRE RÉELLES (source : ITTalentsdzpro, marché algérien) :\n${lines.join(
+    "\n"
+  )}\n\nIMPORTANT : Utilise ces données réelles pour donner une estimation salariale précise. Si le profil correspond à un de ces postes, donne la fourchette exacte.`;
 }
 
 // --- AI System Prompt ---
@@ -120,27 +93,11 @@ Propose une version optimisée du résumé professionnel (3-4 lignes percutantes
 
 Sois constructif, précis et spécifique au marché IT algérien. Référence-toi aux standards du marché local (entreprises algériennes, ESN algériennes, startups, etc.).`;
 
-let zaiInstance: Awaited<ReturnType<typeof ZAI.create>> | null = null;
-
-async function getZAI() {
-  if (!zaiInstance) {
-    const apiKey = process.env.GLMAPIKEY;
-    if (!apiKey || apiKey === 'your_glm_api_key_here') {
-      throw new Error('GLMAPIKEY environment variable is not set or is placeholder');
-    }
-    zaiInstance = await ZAI.create({
-      apiKey,
-      model: 'GLM-4.5-Flash'
-    });
-  }
-  return zaiInstance;
-}
-
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-    const { cvContent, targetPosition } = body;
+    const { cvContent, targetPosition } = await request.json();
 
+    // Validate input
     if (!cvContent || cvContent.trim().length < 50) {
       return NextResponse.json(
         {
@@ -152,14 +109,28 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Load and match salary data
-    const salaryData = loadSalaryData();
+    // Check API key
+    const apiKey = process.env.GLMAPIKEY;
+    if (!apiKey) {
+      console.error("GLMAPIKEY environment variable is not set.");
+      return NextResponse.json(
+        {
+          success: false,
+          error:
+            "La clé API n'est pas configurée. Veuillez contacter l'administrateur.",
+        },
+        { status: 500 }
+      );
+    }
+
+    // Match salary data
     const matchedSalary = matchSalary(
-      salaryData,
+      SALARY_DATA,
       targetPosition || "Non spécifié"
     );
     const salaryContext = buildSalaryContext(matchedSalary);
 
+    // Build user message
     const userMessage = `Voici le contenu du CV à analyser :
 
 ---
@@ -171,25 +142,52 @@ ${salaryContext}
 
 Analyse ce CV en profondeur et fournis des recommandations personnalisées pour le marché IT algérien.`;
 
-    const zai = await getZAI();
-
-    const completion = await zai.chat.completions.create({
-      messages: [
-        { role: "assistant", content: SYSTEM_PROMPT },
-        { role: "user", content: userMessage },
-      ],
-      thinking: { type: "disabled" },
+    // Call GLM API (ZhipuAI)
+    const completion = await fetch(GLM_API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        model: process.env.GLM_MODEL || "GLM-4.5-Flash",
+        messages: [
+          { role: "system", content: SYSTEM_PROMPT },
+          { role: "user", content: userMessage },
+        ],
+        temperature: 0.7,
+        max_tokens: 4096,
+        top_p: 0.9,
+      }),
     });
 
-    const response = completion.choices[0]?.message?.content;
+    if (!completion.ok) {
+      const errorBody = await completion.text();
+      console.error("GLM API Error:", completion.status, errorBody);
+      return NextResponse.json(
+        {
+          success: false,
+          error: `Erreur API IA (${completion.status}). Veuillez réessayer.`,
+        },
+        { status: 502 }
+      );
+    }
+
+    const data = await completion.json();
+    const response = data.choices?.[0]?.message?.content;
 
     if (!response || response.trim().length === 0) {
       return NextResponse.json(
-        { success: false, error: "Erreur lors de l'analyse. Veuillez réessayer." },
+        {
+          success: false,
+          error:
+            "Erreur lors de l'analyse. La réponse IA est vide. Veuillez réessayer.",
+        },
         { status: 500 }
       );
     }
 
+    // Return results
     return NextResponse.json({
       success: true,
       recommendations: response,
