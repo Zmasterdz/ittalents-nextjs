@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "CvOptimizer ITTalentsdzpro - Optimisez votre carrière IT en Algérie",
   description:
-    "Collez le contenu de votre CV et obtenez des recommandations personnalisées pour décrocher le poste de vos rêves en Algérie. Propulsé par l'IA.",
+    "Collez le contenu de votre CV et obtenez des recommandations personnalisées pour décrocher votre opportunités. Propulsé par l'IA.",
   keywords: [
     "CV",
     "optimiseur",
