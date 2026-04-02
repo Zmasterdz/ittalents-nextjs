@@ -1,0 +1,573 @@
+[
+    {
+        "job":"job",
+        "min":"Salaire Min (DZD)",
+        "max":"Salaire Max (DZD)"
+    },
+    {
+        "job":"DSI",
+        "min":180000,
+        "max":350000
+    },
+    {
+        "job":"RSSI",
+        "min":160000,
+        "max":245000
+    },
+    {
+        "job":"Délégué à la protection des données (DPO)",
+        "min":150000,
+        "max":225000
+    },
+    {
+        "job":"Process IT & Performance Manager",
+        "min":145000,
+        "max":190000
+    },
+    
+       {
+        "job":"IT Services ADMIN ITSM",
+        "min":80000,
+        "max":120000
+    },
+    {
+        "job":"IT Manager",
+        "min":120000,
+        "max":180000
+    },
+    {
+        "job":"Architecte informatique",
+        "min":100000,
+        "max":180000
+    },
+    {
+        "job":"Gestionnaire de problèmes\/ Changements",
+        "min":90000,
+        "max":150000
+    },
+    {
+        "job":"Chef de produit informatique",
+        "min":80000,
+        "max":170000
+    },
+    {
+        "job":"Chef de projet informatique",
+        "min":90000,
+        "max":180000
+    },
+    {
+        "job":"Développeur iOS",
+        "min":80000,
+        "max":160000
+    },
+    {
+        "job":"Ingénieur de conception IC",
+        "min":80000,
+        "max":160000
+    },
+    {
+        "job":"Scrum Master",
+        "min":80.000,
+        "max":150.000
+    },
+   
+    {
+        "job":"Gestionnaire d'incidents",
+        "min":80000,
+        "max":145000
+    },
+    {
+        "job":".Net programmeur",
+        "min":80000,
+        "max":140000
+    },
+    {
+        "job":"ABAP programmeur",
+        "min":80000,
+        "max":150000
+    },
+    {
+        "job":"ASP.NET Programmeur",
+        "min":80000,
+        "max":120000
+    },
+    {
+        "job":"Administrateur SalesForce",
+        "min":80000,
+        "max":120000
+    },
+    {
+        "job":"Administrateur Système",
+        "min":80000,
+        "max":100000
+    },
+    {
+        "job":"Administrateur de réseau informatique",
+        "min":80.000,
+        "max":120.000
+    },
+    {
+        "job":"Administrateur du système informatique",
+        "min":80000,
+        "max":90000
+    },
+    {
+        "job":"C Programmeur",
+        "min":80000,
+        "max":145000
+    },
+    {
+        "job":"C# Programmeur",
+        "min":80000,
+        "max":150000
+    },
+    {
+        "job":"C++ Programmeur",
+        "min":80000,
+        "max":150000
+    },
+    {
+        "job":"Ingénieur DevOps",
+        "min":80000,
+        "max":170000
+    },
+    {
+        "job":"Programmeur Java",
+        "min":80000,
+        "max":150000
+    },
+    {
+        "job":"Spécialiste en sécurité informatique (Cybersécurité)",
+        "min":80000,
+        "max":140000
+    },
+    {
+        "job":"Spécialiste en sécurité informatique (GRC)",
+        "min":80000,
+        "max":140000
+    },
+    {
+        "job":"Backend developer",
+        "min":70000,
+        "max":150000
+    },
+    {
+        "job":"Business Intelligence Specialiste",
+        "min":70000,
+        "max":120000
+    },
+    {
+        "job":"Data scientist",
+        "min":70000,
+        "max":140000
+    },
+    {
+        "job":"Développeur Android",
+        "min":70000,
+        "max":150000
+    },
+    {
+        "job":"IT Business Analyst",
+        "min":70000,
+        "max":145000
+    },
+    {
+        "job":"Ingénieur infonuagique",
+        "min":70000,
+        "max":150000
+    },
+    {
+        "job":"Programmeur Javascript",
+        "min":70000,
+        "max":145000
+    },
+    {
+        "job":"Programmeur en Objective-C",
+        "min":70000,
+        "max":150000
+    },
+    {
+        "job":"Programmeur en Oracle",
+        "min":70000,
+        "max":140000
+    },
+    {
+        "job":"Programmeur en Perl",
+        "min":70000,
+        "max":140000
+    },
+    {
+        "job":"Spécialiste SAP (Référent métier)",
+        "min":70000,
+        "max":155000
+    },
+    
+       {
+        "job":"Spécialiste GIS",
+        "min":70000,
+        "max":125000
+    },
+    
+    
+    
+     {
+        "job":"Spécialiste SAP (Admin/Prod)",
+        "min":80000,
+        "max":165000
+    },
+    
+    {
+        "job":"Testeur informatique - tests automatisés",
+        "min":70000,
+        "max":145000
+    },
+    {
+        "job":"Analyste informatique",
+        "min":60000,
+        "max":120000
+    },
+    {
+        "job":"Auditeur informatique",
+        "min":80000,
+        "max":160000
+    },
+    {
+        "job":"Designer de jeu",
+        "min":60000,
+        "max":100000
+    },
+    {
+        "job":"Frontend developer",
+        "min":60000,
+        "max":110000
+    },
+    {
+        "job":"Game developer",
+        "min":60000,
+        "max":110000
+    },
+    {
+        "job":"Ingenieur Logiciel",
+        "min":60000,
+        "max":150000
+    },
+    {
+        "job":"Ingenieur Système",
+        "min":60000,
+        "max":120000
+    },
+    {
+        "job":"Programmeur PHP",
+        "min":60000,
+        "max":110000
+    },
+    {
+        "job":"Programmeur en Python",
+        "min":60000,
+        "max":120000
+    },
+    {
+        "job":"Programmeur microcontrôleur",
+        "min":60000,
+        "max":110000
+    },
+    {
+        "job":"R programmeur",
+        "min":60000,
+        "max":110000
+    },
+    {
+        "job":"Redacteur Technique",
+        "min":60000,
+        "max":90000
+    },
+    {
+        "job":"Ruby Developer \/ Programmer",
+        "min":60000,
+        "max":110000
+    },
+    {
+        "job":"Technicien de maintenance",
+        "min":60000,
+        "max":90000
+    },
+    {
+        "job":"Testeur informatique",
+        "min":60000,
+        "max":90000
+    },
+    {
+        "job":"Maintenancien en informatique",
+        "min":45000,
+        "max":80000
+    },
+    {
+        "job":"Spécialiste en support informatique \/ Helpdesk",
+        "min":45000,
+        "max":90000
+    },
+    {
+        "job":"Technicien",
+        "min":45000,
+        "max":70000
+    },
+    {
+        "job":"Technicien en communication de données",
+        "min":45000,
+        "max":80000
+    },
+    {
+        "job":"Web designer",
+        "min":45000,
+        "max":90000
+    },
+    {
+        "job":"webmaster",
+        "min":45000,
+        "max":70000
+    },
+    {
+        "job": "Expert en intelligence artificielle (IA)",
+        "min": 120000,
+        "max": 250000
+    },
+    
+    {
+        "job": "Ingénieur en robotique",
+        "min": 100000,
+        "max": 200000
+    },
+    {
+        "job": "Administrateur de bases de données (DBA)",
+        "min": 80000,
+        "max": 150000
+    },
+    {
+        "job": "Spécialiste en virtualisation",
+        "min": 90000,
+        "max": 180000
+    },
+    {
+        "job": "Consultant en transformation digitale",
+        "min": 130000,
+        "max": 250000
+    },
+  
+ 
+    {
+        "job": "Ingénieur en blockchain",
+        "min": 110000,
+        "max": 220000
+    },
+    {
+        "job": "Architecte Big Data",
+        "min": 150000,
+        "max": 300000
+    },
+    {
+        "job": "Ingénieur en traitement d'image",
+        "min": 100000,
+        "max": 200000
+    },
+    {
+        "job": "Administrateur Linux",
+        "min": 70000,
+        "max": 140000
+    },
+    {
+        "job": "Ingénieur en télécommunications",
+        "min": 90000,
+        "max": 180000
+    },
+    {
+        "job": "Spécialiste en ERP (autres que SAP)",
+        "min": 85000,
+        "max": 160000
+    },
+    {
+        "job": "Développeur No-Code/Low-Code",
+        "min": 60000,
+        "max": 100000
+    },
+    {
+        "job": "Expert en Forensique Informatique",
+        "min": 90000,
+        "max": 180000
+    },
+
+
+    {
+        "job": "Architecte Cloud",
+        "min": 130000,
+        "max": 250000
+    },
+    {
+        "job": "Ingénieur IA/ML (Machine Learning)",
+        "min": 110000,
+        "max": 220000
+    },
+    {
+        "job": "Spécialiste en IoT (Internet des Objets)",
+        "min": 100000,
+        "max": 190000
+    },
+    {
+        "job": "Développeur Unity/Unreal Engine",
+        "min": 70000,
+        "max": 140000
+    },
+    {
+        "job": "Analyste SOC (Security Operations Center)",
+        "min": 90000,
+        "max": 180000
+    },
+    {
+        "job": "Concepteur UX/UI",
+        "min": 60000,
+        "max": 120000
+    },
+    {
+        "job": "Chef de projet digital",
+        "min": 90000,
+        "max": 170000
+    },
+    {
+        "job": "Développeur de systèmes embarqués",
+        "min": 80000,
+        "max": 160000
+    },
+   
+    {
+        "job": "Spécialiste en virtualisation réseau (SDN)",
+        "min": 100000,
+        "max": 200000
+    },
+    {
+        "job": "Ingénieur QA (Quality Assurance)",
+        "min": 80000,
+        "max": 150000
+    },
+    {
+        "job": "Consultant en CRM",
+        "min": 80000,
+        "max": 140000
+    },
+    {
+        "job": "Spécialiste en automatisation RPA",
+        "min": 100000,
+        "max": 180000
+    },
+    {
+        "job": "Spécialiste en gestion de données (Data Governance)",
+        "min": 90000,
+        "max": 170000
+    },
+    {
+        "job": "Formateur en technologies IT",
+        "min": 50000,
+        "max": 90000
+    },
+
+    {
+        "job": "Ingénieur en réseaux SD-WAN",
+        "min": 100000,
+        "max": 180000
+    },
+    {
+        "job": "Ingénieur en cybersécurité offensive (Pentester)",
+        "min": 90000,
+        "max": 200000
+    },
+    {
+        "job": "Ingénieur en cybersécurité défensive (Blue Team)",
+        "min": 85000,
+        "max": 180000
+    },
+    
+      {
+        "job": "Ingénieur en cybersécurité défensive (Red Team)",
+        "min": 85000,
+        "max": 180000
+    },
+    
+    {
+        "job": "Expert en bases de données NoSQL",
+        "min": 100000,
+        "max": 200000
+    },
+    {
+        "job": "Développeur blockchain",
+        "min": 120000,
+        "max": 250000
+    },
+   
+    {
+        "job": "Administrateur Kubernetes",
+        "min": 100000,
+        "max": 180000
+    },
+    {
+        "job": "Expert en automatisation d'infrastructure (Terraform/Ansible)",
+        "min": 110000,
+        "max": 200000
+    },
+    {
+        "job": "Analyste en data visualisation",
+        "min": 80000,
+        "max": 150000
+    },
+  
+    {
+        "job": "Consultant ITIL/COBIT",
+        "min": 90000,
+        "max": 180000
+    },
+    {
+        "job": "Ingénieur en réseaux satellitaires",
+        "min": 95000,
+        "max": 180000
+    },
+    {
+        "job": "Spécialiste en déploiement 5G",
+        "min": 120000,
+        "max": 250000
+    },
+    {
+        "job": "Ingénieur en microservices",
+        "min": 100000,
+        "max": 190000
+    },
+    {
+        "job": "Développeur d'applications de réalité augmentée (AR)",
+        "min": 80000,
+        "max": 160000
+    },
+    {
+        "job": "Expert en systèmes SCADA",
+        "min": 100000,
+        "max": 300000
+    },
+    {
+        "job": "Responsable d'exploitation IT",
+        "min": 90000,
+        "max": 170000
+    },
+    {
+        "job": "Spécialiste en migration Cloud",
+        "min": 110000,
+        "max": 210000
+    },
+    {
+        "job": "Analyste en conformité réglementaire (18 07/Cybersécurité)",
+        "min": 90000,
+        "max": 160000
+    },
+    {
+        "job": "Spécialiste en performance applicative (APM)",
+        "min": 100000,
+        "max": 180000
+    }
+]
+
+
+
