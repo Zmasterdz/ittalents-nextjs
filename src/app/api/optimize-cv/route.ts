@@ -124,7 +124,14 @@ let zaiInstance: Awaited<ReturnType<typeof ZAI.create>> | null = null;
 
 async function getZAI() {
   if (!zaiInstance) {
-    zaiInstance = await ZAI.create();
+    const apiKey = process.env.GLMAPIKEY;
+    if (!apiKey || apiKey === 'your_glm_api_key_here') {
+      throw new Error('GLMAPIKEY environment variable is not set or is placeholder');
+    }
+    zaiInstance = await ZAI.create({
+      apiKey,
+      model: 'GLM-4.5-Flash'
+    });
   }
   return zaiInstance;
 }
