@@ -1,1 +1,1 @@
-# ittalents-nextjs
+# ittalents-cvanalyze
