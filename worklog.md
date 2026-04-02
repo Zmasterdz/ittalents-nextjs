@@ -1,7 +1,7 @@
 ---
 Task ID: 1
 Agent: Main Agent
-Task: Build CvOptimizer ITTalentsdzpro - AI-powered CV optimization app for IT careers in Algeria
+Task: Build CvOptimizers ITTalentsdzpro - AI-powered CV optimization app for IT careers in Algeria
 
 Work Log:
 - Analyzed project structure and existing dependencies
