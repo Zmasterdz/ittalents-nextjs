@@ -81,8 +81,37 @@ export default function Home() {
   const [result, setResult] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  const [progress, setProgress] = useState(0);
   const resultsRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
+
+  const stages = [
+    { percent: 10, message: "📥 Lecture du CV...", duration: 10000 },
+    { percent: 30, message: "🔍 Analyse des compétences...", duration: 30000 },
+    { percent: 50, message: "💼 Matching avec le marché IT algérien...", duration: 60000 },
+    { percent: 75, message: "🧠 Génération des recommandations IA...", duration: 90000 },
+    { percent: 95, message: "✅ Finalisation et vérification...", duration: 30000 },
+  ];
+
+  React.useEffect(() => {
+    if (!isAnalyzing) {
+      setProgress(0);
+      return;
+    }
+
+    let currentStage = 0;
+    const totalDuration = 300000; // 5 minutes max
+    const interval = setInterval(() => {
+      if (currentStage < stages.length) {
+        setProgress(stages[currentStage].percent);
+        currentStage++;
+      } else {
+        setProgress(100);
+      }
+    }, 20000); // Advance stage every 20s, adjust for realism
+
+    return () => clearInterval(interval);
+  }, [isAnalyzing]);
 
   const handleAnalyze = useCallback(async () => {
     if (!cvContent.trim() || cvContent.trim().length < 50) {
@@ -513,13 +542,27 @@ COMPÉTENCES
                     {isAnalyzing ? (
                       <>
                         <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                        Analyse en cours...
-                      </>
-                    ) : (
-                      <>
-                        <Sparkles className="w-5 h-5 mr-2" />
-                        Optimiser mon CV
-                      </>
+                        Analyse en cours.4 pt-4"
+                    >
+                      <div className="flex flex-col items-center gap-3">
+                        <div className="w-full bg-muted rounded-full h-3 relative overflow-hidden">
+                          <motion.div 
+                            className="bg-gradient-to-r from-primary to-secondary h-3 rounded-full shadow-lg" 
+                            initial={{ width: 0 }}
+                            animate={{ width: `${progress}%` }}
+                            transition={{ duration: 0.5, ease: "easeOut" }}
+                          />
+                        </div>
+                        <div className="text-center">
+                          <div className="text-sm font-medium text-foreground mb-1">
+                            {progress}%
+                          </div>
+                          <p className="text-xs text-muted-foreground animate-pulse">
+                            Analyse en cours... (jusqu'à 5 min)
+                          </p>
+                        </div>
+                        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+                      </div
                     )}
                   </Button>
                   {(cvContent || result) && (
