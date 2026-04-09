@@ -96,26 +96,26 @@ export default function RootLayout({
                     <SidebarMenu>
                       <SidebarMenuItem>
                         <SidebarMenuButton asChild>
-                          <Link href="#home" className="hover:bg-accent/50">
+                          <a href="#cv-input" className="hover:bg-accent/50">
                             <Home className="h-4 w-4" />
                             <span>Optimiser CV</span>
-                          </Link>
+                          </a>
                         </SidebarMenuButton>
                       </SidebarMenuItem>
                       <SidebarMenuItem>
                         <SidebarMenuButton asChild>
-                          <Link href="#salary" className="hover:bg-accent/50">
+                          <a href="https://salary.ittalentsdzpro.com/" target="_blank" rel="noopener noreferrer" className="hover:bg-accent/50">
                             <BarChart3 className="h-4 w-4" />
                             <span>Salaires IT</span>
-                          </Link>
+                          </a>
                         </SidebarMenuButton>
                       </SidebarMenuItem>
                       <SidebarMenuItem>
                         <SidebarMenuButton asChild>
-                          <Link href="#examples" className="hover:bg-accent/50">
+                          <a href="https://ittalentsdzpro.com/" target="_blank" rel="noopener noreferrer" className="hover:bg-accent/50">
                             <BookOpen className="h-4 w-4" />
-                            <span>Exemples</span>
-                          </Link>
+                            <span>Inscrivez-vous</span>
+                          </a>
                         </SidebarMenuButton>
                       </SidebarMenuItem>
                     </SidebarMenu>
