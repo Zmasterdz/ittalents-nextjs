@@ -86,7 +86,7 @@ export default function Home() {
   React.useEffect(() => {
     if (isAnalyzing) {
       const interval = setInterval(() => {
-        setProgress((prev) => Math.min(prev + Math.random() * 5, 95));
+        setProgress((prev) => Math.min(prev + (Math.random() * 4 + 1), 95));
       }, 2500);
       return () => clearInterval(interval);
     } else {
