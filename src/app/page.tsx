@@ -82,6 +82,17 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [progress, setProgress] = useState(0);
+
+  React.useEffect(() => {
+    if (isAnalyzing) {
+      const interval = setInterval(() => {
+        setProgress((prev) => Math.min(prev + (Math.random() * 3 + 1), 95));
+      }, 1500);
+      return () => clearInterval(interval);
+    } else {
+      setProgress(0);
+    }
+  }, [isAnalyzing]);
   const resultsRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
@@ -543,7 +554,7 @@ COMPÉTENCES
                       <>
                         <Loader2 className="w-5 h-5 mr-2 animate-spin" />
                         Analyse en cours.4 pt-4"
-                    >
+                    ):
                       <div className="flex flex-col items-center gap-3">
                         <div className="w-full bg-muted rounded-full h-3 relative overflow-hidden">
                           <motion.div 
@@ -562,7 +573,7 @@ COMPÉTENCES
                           </p>
                         </div>
                         <Loader2 className="w-8 h-8 animate-spin text-primary" />
-                      </div
+                      </div>
                     )}
                   </Button>
                   {(cvContent || result) && (
@@ -580,21 +591,35 @@ COMPÉTENCES
 
                 {/* Loading Progress */}
                 <AnimatePresence>
-                  {isAnalyzing && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      className="space-y-3"
-                    >
-                      <Progress value={65} className="h-2" />
-                      <p className="text-sm text-muted-foreground text-center animate-pulse">
-                        🤖 Notre IA analyse votre CV pour le marché IT
-                        algérien...
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                    {isAnalyzing && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="space-y-4 pt-4"
+                      >
+                        <div className="flex flex-col items-center gap-3">
+                          <div className="w-full bg-muted rounded-full h-3 relative overflow-hidden">
+                            <motion.div 
+                              className="bg-gradient-to-r from-primary to-secondary h-3 rounded-full shadow-lg" 
+                              initial={{ width: "0%" }}
+                              animate={{ width: `calc(${progress}% - 4px)` }}
+                              transition={{ duration: 0.8, ease: "easeOut" }}
+                            />
+                          </div>
+                          <div className="text-center">
+                            <div className="text-sm font-medium text-foreground mb-1">
+                              {Math.round(progress)}%
+                            </div>
+                            <div className="text-xs text-muted-foreground">
+                              Analyse IA en cours... (max 5 min)
+                            </div>
+                          </div>
+                          <Loader2 className="w-8 h-8 animate-spin text-primary" />
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
               </CardContent>
             </Card>
           </motion.div>
