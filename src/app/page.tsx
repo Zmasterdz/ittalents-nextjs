@@ -37,6 +37,7 @@ import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
+import { ThemeToggle, SidebarToggle } from "@/components/theme-toggle";
 
 const TARGET_POSITIONS = [
   "Développeur Full Stack",
@@ -248,41 +249,9 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      {/* Header */}
-      <header className="sticky top-0 z-50 glass">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl hero-gradient flex items-center justify-center shadow-lg shadow-primary/20">
-                <Sparkles className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <h1 className="text-lg font-bold tracking-tight text-foreground">
-                  CvOptimizer
-                </h1>
-                <p className="text-xs text-muted-foreground hidden sm:block">
-                  ITTalentsdzpro
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <a
-                href="https://ittalentsdzpro.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
-              >
-                <ExternalLink className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">ITTalentsdzpro.com</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </header>
-
+    <div className="flex-1 p-4 md:p-8 lg:p-12 min-h-screen">
       {/* Hero Section */}
-      <section className="hero-gradient relative overflow-hidden noise-overlay">
+      <section id="home" className="hero-gradient relative overflow-hidden noise-overlay">
         {/* Animated background orbs */}
         <div className="absolute inset-0">
           <div className="orb-float absolute top-16 left-[10%] w-72 h-72 rounded-full bg-primary/8 blur-3xl" />
