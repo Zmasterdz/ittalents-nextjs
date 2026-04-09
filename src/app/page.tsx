@@ -86,7 +86,7 @@ export default function Home() {
   React.useEffect(() => {
     if (isAnalyzing) {
       const interval = setInterval(() => {
-        setProgress((prev) => Math.min(prev + (Math.random() * 4 + 1), 95));
+        setProgress((prev) => Math.min(prev + Math.random() * 4 + 1, 95));
       }, 2500);
       return () => clearInterval(interval);
     } else {
@@ -597,19 +597,19 @@ COMPÉTENCES
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
-                      className="space-y-4 pt-4"
+                      className="space-y-4 pt-6 border-t border-border/50 mt-6"
                     >
                       <div className="flex flex-col items-center gap-4">
                         <div className="w-full bg-muted rounded-full h-3 relative overflow-hidden">
                           <motion.div
-                            className="bg-gradient-to-r from-primary via-primary/80 to-secondary h-3 rounded-full shadow-lg"
+                            className="bg-gradient-to-r from-primary to-secondary h-3 rounded-full shadow-lg"
                             initial={{ width: 0 }}
                             animate={{ width: `${progress}%` }}
                             transition={{ duration: 0.8, ease: "easeOut" }}
                           />
                         </div>
                         <div className="text-center">
-                          <div className="text-lg font-bold text-foreground mb-1">
+                          <div className="text-lg font-bold text-foreground mb-2">
                             {Math.round(progress)}%
                           </div>
                           <div className="text-sm text-muted-foreground animate-pulse">
