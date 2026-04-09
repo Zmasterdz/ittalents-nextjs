@@ -86,13 +86,14 @@ export default function Home() {
   React.useEffect(() => {
     if (isAnalyzing) {
       const interval = setInterval(() => {
-        setProgress((prev) => Math.min(prev + (Math.random() * 3 + 1), 95));
-      }, 1500);
+        setProgress((prev) => Math.min(prev + Math.random() * 5, 95));
+      }, 2500);
       return () => clearInterval(interval);
     } else {
       setProgress(0);
     }
   }, [isAnalyzing]);
+
   const resultsRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
@@ -557,11 +558,11 @@ COMPÉTENCES
                     ):
                       <div className="flex flex-col items-center gap-3">
                         <div className="w-full bg-muted rounded-full h-3 relative overflow-hidden">
-                          <motion.div 
-                            className="bg-gradient-to-r from-primary to-secondary h-3 rounded-full shadow-lg" 
+                          <motion.div
+                            className="bg-gradient-to-r from-primary via-primary/80 to-secondary h-3 rounded-full shadow-lg"
                             initial={{ width: 0 }}
                             animate={{ width: `${progress}%` }}
-                            transition={{ duration: 0.5, ease: "easeOut" }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
                           />
                         </div>
                         <div className="text-center">
@@ -591,35 +592,35 @@ COMPÉTENCES
 
                 {/* Loading Progress */}
                 <AnimatePresence>
-                    {isAnalyzing && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="space-y-4 pt-4"
-                      >
-                        <div className="flex flex-col items-center gap-3">
-                          <div className="w-full bg-muted rounded-full h-3 relative overflow-hidden">
-                            <motion.div 
-                              className="bg-gradient-to-r from-primary to-secondary h-3 rounded-full shadow-lg" 
-                              initial={{ width: "0%" }}
-                              animate={{ width: `calc(${progress}% - 4px)` }}
-                              transition={{ duration: 0.8, ease: "easeOut" }}
-                            />
-                          </div>
-                          <div className="text-center">
-                            <div className="text-sm font-medium text-foreground mb-1">
-                              {Math.round(progress)}%
-                            </div>
-                            <div className="text-xs text-muted-foreground">
-                              Analyse IA en cours... (max 5 min)
-                            </div>
-                          </div>
-                          <Loader2 className="w-8 h-8 animate-spin text-primary" />
+                  {isAnalyzing && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="space-y-4 pt-4"
+                    >
+                      <div className="flex flex-col items-center gap-4">
+                        <div className="w-full bg-muted rounded-full h-3 relative overflow-hidden">
+                          <motion.div
+                            className="bg-gradient-to-r from-primary via-primary/80 to-secondary h-3 rounded-full shadow-lg"
+                            initial={{ width: 0 }}
+                            animate={{ width: `${progress}%` }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
+                          />
                         </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                        <div className="text-center">
+                          <div className="text-lg font-bold text-foreground mb-1">
+                            {Math.round(progress)}%
+                          </div>
+                          <div className="text-sm text-muted-foreground animate-pulse">
+                            🤖 Analyse IA en cours... (max 5 min)
+                          </div>
+                        </div>
+                        <Loader2 className="w-10 h-10 animate-spin text-primary" />
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </CardContent>
             </Card>
           </motion.div>
